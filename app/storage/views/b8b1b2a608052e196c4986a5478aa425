@@ -1,0 +1,26 @@
+
+<?php $__env->startSection('content'); ?>
+<?php /*  List all Posts  */ ?>
+<div>
+	<?php if($posts->isEmpty()): ?>
+		<p>
+			There are no posts.<br />
+			Please <a href=" <?php echo URL::route('posts.create'); ?> ">create one</a>.
+		</p>
+	<?php else: ?>
+		<h3>All Posts</h3>
+		<a href=" <?php echo URL::route('posts.create'); ?> ">Create new post</a>.
+		<ul>
+			<?php foreach($posts as $post): ?>
+				<li>
+					<?php echo $post->title; ?>
+					<a href=" <?php echo URL::route('posts.show', $post->id); ?>">Show</a>
+					<a href=" <?php echo URL::route('posts.edit', $post->id); ?> ">Edit</a>
+					<a href=" <?php echo URL::route('posts.destroy', $post->id); ?> " data-method="delete">Delete</a>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
