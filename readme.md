@@ -1,19 +1,28 @@
-## Laravel PHP Framework
+## Laravel Playground
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+Clone the repo. To see all remote branches, run
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+	git branch -a
+	
+If you're not seeing any newly added branches that may have been added since you first cloned the repo, run
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+	git fetch origin
 
-## Official Documentation
+To check out a remote branch:
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+	git checkout -b local-branch-name remotes/origin/remote-branch-name
+	
+For example:
 
-### Contributing To Laravel
+		git checkout -b [form-model-crud] remotes/origin/form-model-crud
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
 
-### License
+Included is [Shawn McCool's Vagrant setup](https://github.com/ShawnMcCool/vagrant-chef). Follow the instructions on his repo if you want to use it (make sure all required software is up to date etc.) and when ready, bring the VM up (`vagrant up`).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+I'm using a mySQL database called `playground`. There's a MakeFile included with the Vagrant setup in `vagrant-chef/vagrant`. This has got a lot of nice helpers that we can run without having to ssh into the VM. To create our database:
+
+	make createdb DBNAME="playground"
+	
+Default mySQL login for Shawn's Vagrant setup is `root/password` which is what this laravel-playground repo is preconfigured for.
+
+__Note:__ On OSX I found that there was an issue when using the hostname `app.local` (it tries to look for Bonjour services first, which slows down requests) so use `app.dev` instead.
