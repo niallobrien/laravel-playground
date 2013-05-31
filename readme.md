@@ -1,28 +1,9 @@
-## Laravel Playground
+## Form Model CRUD
 
-Clone the repo. To see all remote branches, run
+In this branch, I'm doing simple CRUD on a post resource (no validation).
 
-	git branch -a
-	
-If you're not seeing any newly added branches that may have been added since you first cloned the repo, run
+Note that I attempted to use a single form partial (`app/posts/_form.blade.php`) for the create and edit views, however there's currently no way in L4 to automatically detect the view and place the corresponding method on the form (POST, PUT). So I manually set that part of the form in the views and abstracted out what I could (that made sense).
 
-	git fetch origin
+Using a single form is possible by instantiating an empty Post model and passing that into the form's create view. Since we're using Form::model() and populating the form with the Post model, it will display an empty form for `app/views/posts/create.blade.php` because our model is empty. However, when displaying the edit form, it will populate the form with the data from the existing model. 
 
-To check out a remote branch:
-
-	git checkout -b local-branch-name remotes/origin/remote-branch-name
-	
-For example:
-
-		git checkout -b [form-model-crud] remotes/origin/form-model-crud
-
-
-Included is [Shawn McCool's Vagrant setup](https://github.com/ShawnMcCool/vagrant-chef). Follow the instructions on his repo if you want to use it (make sure all required software is up to date etc.) and when ready, bring the VM up (`vagrant up`).
-
-I'm using a mySQL database called `playground`. There's a MakeFile included with the Vagrant setup in `vagrant-chef/vagrant`. This has got a lot of nice helpers that we can run without having to ssh into the VM. To create our database:
-
-	make createdb DBNAME="playground"
-	
-Default mySQL login for Shawn's Vagrant setup is `root/password` which is what this laravel-playground repo is preconfigured for.
-
-__Note:__ On OSX I found that there was an issue when using the hostname `app.local` (it tries to look for Bonjour services first, which slows down requests) so use `app.dev` instead.
+Pretty neat! :)
